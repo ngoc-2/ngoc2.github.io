@@ -1,0 +1,579 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Native iOS calorie tracker with AI food parsing. Type what you ate in plain English. Barcode scanning, HealthKit sync, Apple Watch companion."><title>Fuel — Calorie Tracker for iOS</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><script>
+    (function() {
+      var s = localStorage.getItem('theme');
+      if (s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script><link rel="stylesheet" href="/_astro/index.Cr_gTnCT.css">
+<link rel="stylesheet" href="/_astro/fuel.Dwbd7VrQ.css"></head> <body> <!-- Preloader --> <div class="preloader" id="preloader"> <div class="preloader__wrapper"> <div class="preloader__bar-line"> <span class="preloader__bracket">[</span><span class="preloader__fill" id="preloader-fill"></span><span class="preloader__bracket">]</span> </div> <div class="preloader__pct" id="preloader-pct">0%</div> </div> </div> <!-- Custom Cursor --> <div class="cursor" id="cursor"> <div class="cursor__dot"></div> </div> <!-- Header --> <header class="site-header" id="site-header"> <div> <a class="site-header__brand" href="/"> <span>Steven Nguyen</span> </a> </div> <div> <nav> <ul class="site-nav__list"> <li><a href="/photos" class="site-nav__link">Photos</a></li> <li><a href="/#work" class="site-nav__link">Work</a></li> <li><a href="/#about" class="site-nav__link">About</a></li> <li><button class="site-nav__link theme-toggle" onclick="toggleTheme()">Dark</button></li> </ul> </nav> <button class="menu-toggle" id="menu-toggle">Menu</button> </div> </header> <!-- Mobile Menu --> <div class="mobile-menu" id="mobile-menu"> <a href="/" onclick="closeMobileMenu()">Home</a> <a href="/#work" onclick="closeMobileMenu()">Work</a> <a href="/photos" onclick="closeMobileMenu()">Photos</a> <a href="/#about" onclick="closeMobileMenu()">About</a> <a href="/#contact" onclick="closeMobileMenu()">Contact</a> <button class="theme-toggle" onclick="toggleTheme()" style="background:none;border:none;color:inherit;font-family:var(--font-display);font-size:2.5rem;text-transform:uppercase;letter-spacing:-0.01em;cursor:pointer;">Dark</button> </div> <main>  <section class="fuel-landing" data-astro-cid-kwrpbscq> <!-- ═══════════════ HERO ═══════════════ --> <div class="fuel-hero" data-astro-cid-kwrpbscq> <div class="fuel-hero__content" data-astro-cid-kwrpbscq> <div class="fuel-hero__badge" data-astro-cid-kwrpbscq> <span class="fuel-hero__badge-dot" data-astro-cid-kwrpbscq></span>
+In Progress
+</div> <h1 class="fuel-hero__title display" data-astro-cid-kwrpbscq>Fuel</h1> <p class="fuel-hero__subtitle" data-astro-cid-kwrpbscq>
+Calorie tracking that doesn't feel like data entry.<br data-astro-cid-kwrpbscq>
+Type what you ate. AI handles the rest.
+</p> <div class="fuel-hero__actions" data-astro-cid-kwrpbscq>  <a href="https://github.com/ngoc-2/FUEL" target="_blank" class="fuel-hero__cta fuel-hero__cta--secondary" data-astro-cid-kwrpbscq>
+View Source
+</a> </div> </div> <div class="fuel-hero__phone-wrap" data-astro-cid-kwrpbscq> <div class="fuel-hero__phone" id="fuel-hero-phone" data-astro-cid-kwrpbscq> <div class="fuel-hero__phone-notch" data-astro-cid-kwrpbscq></div> <div class="fuel-hero__phone-screen" data-astro-cid-kwrpbscq> <!-- Dashboard mockup --> <div class="flp-dash" data-astro-cid-kwrpbscq> <div class="flp-nav" data-astro-cid-kwrpbscq> <span class="flp-nav__btn" data-astro-cid-kwrpbscq>&#8249;</span> <span class="flp-nav__title" data-astro-cid-kwrpbscq>Today</span> <span class="flp-nav__btn" data-astro-cid-kwrpbscq>+</span> </div> <div class="flp-card" data-astro-cid-kwrpbscq> <div class="flp-ring-wrap" data-astro-cid-kwrpbscq> <svg class="flp-ring" viewBox="0 0 140 140" data-astro-cid-kwrpbscq> <circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="14" data-astro-cid-kwrpbscq></circle> <circle class="flp-ring__fill" cx="70" cy="70" r="58" fill="none" stroke="#4DCC66" stroke-width="14" stroke-dasharray="364" stroke-dashoffset="143" stroke-linecap="round" transform="rotate(-90 70 70)" data-astro-cid-kwrpbscq></circle> </svg> <div class="flp-ring__inner" data-astro-cid-kwrpbscq> <div class="flp-ring__cal" data-astro-cid-kwrpbscq>784</div> <div class="flp-ring__label" data-astro-cid-kwrpbscq>remaining</div> </div> </div> <div class="flp-stats" data-astro-cid-kwrpbscq> <div class="flp-stat" data-astro-cid-kwrpbscq> <div class="flp-stat__val flp-stat__val--green" data-astro-cid-kwrpbscq>1,216</div> <div class="flp-stat__label" data-astro-cid-kwrpbscq>Eaten</div> </div> <div class="flp-stat" data-astro-cid-kwrpbscq> <div class="flp-stat__val flp-stat__val--blue" data-astro-cid-kwrpbscq>784</div> <div class="flp-stat__label" data-astro-cid-kwrpbscq>Remaining</div> </div> <div class="flp-stat" data-astro-cid-kwrpbscq> <div class="flp-stat__val" data-astro-cid-kwrpbscq>2,000</div> <div class="flp-stat__label" data-astro-cid-kwrpbscq>Target</div> </div> </div> </div> <div class="flp-card" data-astro-cid-kwrpbscq> <div class="flp-section-title" data-astro-cid-kwrpbscq>Macros</div> <div class="flp-macro" data-astro-cid-kwrpbscq> <div class="flp-macro__row" data-astro-cid-kwrpbscq><span data-astro-cid-kwrpbscq>Protein</span><span class="flp-macro__val--p" data-astro-cid-kwrpbscq>86 / 150g</span></div> <div class="flp-macro__track" data-astro-cid-kwrpbscq><div class="flp-macro__fill flp-macro__fill--p" style="width:57%" data-astro-cid-kwrpbscq></div></div> </div> <div class="flp-macro" data-astro-cid-kwrpbscq> <div class="flp-macro__row" data-astro-cid-kwrpbscq><span data-astro-cid-kwrpbscq>Carbs</span><span class="flp-macro__val--c" data-astro-cid-kwrpbscq>134 / 250g</span></div> <div class="flp-macro__track" data-astro-cid-kwrpbscq><div class="flp-macro__fill flp-macro__fill--c" style="width:54%" data-astro-cid-kwrpbscq></div></div> </div> <div class="flp-macro" data-astro-cid-kwrpbscq> <div class="flp-macro__row" data-astro-cid-kwrpbscq><span data-astro-cid-kwrpbscq>Fat</span><span class="flp-macro__val--f" data-astro-cid-kwrpbscq>42 / 70g</span></div> <div class="flp-macro__track" data-astro-cid-kwrpbscq><div class="flp-macro__fill flp-macro__fill--f" style="width:60%" data-astro-cid-kwrpbscq></div></div> </div> </div> <div class="flp-card" data-astro-cid-kwrpbscq> <div class="flp-section-title" data-astro-cid-kwrpbscq>Water</div> <div class="flp-water" data-astro-cid-kwrpbscq> <svg class="flp-drop flp-drop--filled" viewBox="0 0 24 24" data-astro-cid-kwrpbscq><path d="M12 2c-5.33 8.33-8 12.67-8 16 0 4.42 3.58 8 8 8s8-3.58 8-8c0-3.33-2.67-7.67-8-16z" data-astro-cid-kwrpbscq></path></svg> <svg class="flp-drop flp-drop--filled" viewBox="0 0 24 24" data-astro-cid-kwrpbscq><path d="M12 2c-5.33 8.33-8 12.67-8 16 0 4.42 3.58 8 8 8s8-3.58 8-8c0-3.33-2.67-7.67-8-16z" data-astro-cid-kwrpbscq></path></svg> <svg class="flp-drop flp-drop--filled" viewBox="0 0 24 24" data-astro-cid-kwrpbscq><path d="M12 2c-5.33 8.33-8 12.67-8 16 0 4.42 3.58 8 8 8s8-3.58 8-8c0-3.33-2.67-7.67-8-16z" data-astro-cid-kwrpbscq></path></svg> <svg class="flp-drop flp-drop--filled" viewBox="0 0 24 24" data-astro-cid-kwrpbscq><path d="M12 2c-5.33 8.33-8 12.67-8 16 0 4.42 3.58 8 8 8s8-3.58 8-8c0-3.33-2.67-7.67-8-16z" data-astro-cid-kwrpbscq></path></svg> <svg class="flp-drop flp-drop--filled" viewBox="0 0 24 24" data-astro-cid-kwrpbscq><path d="M12 2c-5.33 8.33-8 12.67-8 16 0 4.42 3.58 8 8 8s8-3.58 8-8c0-3.33-2.67-7.67-8-16z" data-astro-cid-kwrpbscq></path></svg> <svg class="flp-drop" viewBox="0 0 24 24" data-astro-cid-kwrpbscq><path d="M12 2c-5.33 8.33-8 12.67-8 16 0 4.42 3.58 8 8 8s8-3.58 8-8c0-3.33-2.67-7.67-8-16z" data-astro-cid-kwrpbscq></path></svg> <svg class="flp-drop" viewBox="0 0 24 24" data-astro-cid-kwrpbscq><path d="M12 2c-5.33 8.33-8 12.67-8 16 0 4.42 3.58 8 8 8s8-3.58 8-8c0-3.33-2.67-7.67-8-16z" data-astro-cid-kwrpbscq></path></svg> <svg class="flp-drop" viewBox="0 0 24 24" data-astro-cid-kwrpbscq><path d="M12 2c-5.33 8.33-8 12.67-8 16 0 4.42 3.58 8 8 8s8-3.58 8-8c0-3.33-2.67-7.67-8-16z" data-astro-cid-kwrpbscq></path></svg> </div> </div> </div> </div> <div class="fuel-hero__phone-bar" data-astro-cid-kwrpbscq></div> </div> </div> </div> <!-- ═══════════════ HOW IT WORKS ═══════════════ --> <div class="fuel-section fuel-how" data-astro-cid-kwrpbscq> <div class="fuel-section__header" data-astro-cid-kwrpbscq> <span class="fuel-section__label lead" data-astro-cid-kwrpbscq>How it works</span> <h2 class="fuel-section__title display display--2" data-astro-cid-kwrpbscq>Three steps.<br data-astro-cid-kwrpbscq>Under 10 seconds.</h2> </div> <div class="fuel-steps" data-astro-cid-kwrpbscq> <div class="fuel-step js-in" data-astro-cid-kwrpbscq> <div class="fuel-step__number" data-astro-cid-kwrpbscq>01</div> <div class="fuel-step__content" data-astro-cid-kwrpbscq> <h3 class="fuel-step__title" data-astro-cid-kwrpbscq>Type what you ate</h3> <p class="fuel-step__desc" data-astro-cid-kwrpbscq>Plain English. "2 eggs, sourdough toast, black coffee." No searching through databases. No measuring cups.</p> </div> </div> <div class="fuel-step js-in" data-astro-cid-kwrpbscq> <div class="fuel-step__number" data-astro-cid-kwrpbscq>02</div> <div class="fuel-step__content" data-astro-cid-kwrpbscq> <h3 class="fuel-step__title" data-astro-cid-kwrpbscq>AI parses it</h3> <p class="fuel-step__desc" data-astro-cid-kwrpbscq>An LLM breaks down your text into individual foods with calories, protein, carbs, and fat. Confidence scores let you know when to double-check.</p> </div> </div> <div class="fuel-step js-in" data-astro-cid-kwrpbscq> <div class="fuel-step__number" data-astro-cid-kwrpbscq>03</div> <div class="fuel-step__content" data-astro-cid-kwrpbscq> <h3 class="fuel-step__title" data-astro-cid-kwrpbscq>Confirm and log</h3> <p class="fuel-step__desc" data-astro-cid-kwrpbscq>Review the parsed items, adjust if needed, and log. Your macros, ring chart, and daily totals update instantly.</p> </div> </div> </div> </div> <!-- ═══════════════ AI PARSING DEMO ═══════════════ --> <div class="fuel-section fuel-demo" data-astro-cid-kwrpbscq> <div class="fuel-demo__layout" data-astro-cid-kwrpbscq> <div class="fuel-demo__phone-wrap" data-astro-cid-kwrpbscq> <div class="fuel-hero__phone fuel-hero__phone--small" id="fuel-demo-phone" data-astro-cid-kwrpbscq> <div class="fuel-hero__phone-notch" data-astro-cid-kwrpbscq></div> <div class="fuel-hero__phone-screen" data-astro-cid-kwrpbscq> <div class="flp-ai" data-astro-cid-kwrpbscq> <div class="flp-ai__navbar" data-astro-cid-kwrpbscq> <span class="flp-ai__navbar-btn" data-astro-cid-kwrpbscq>Cancel</span> <span class="flp-ai__navbar-title" data-astro-cid-kwrpbscq>Add Food</span> <span data-astro-cid-kwrpbscq></span> </div> <div class="flp-card" data-astro-cid-kwrpbscq> <div class="flp-ai__icon" data-astro-cid-kwrpbscq> <svg width="28" height="28" viewBox="0 0 24 24" fill="none" data-astro-cid-kwrpbscq> <path d="M12 2L13.09 8.26L18 6L14.74 10.91L21 12L14.74 13.09L18 18L13.09 15.74L12 22L10.91 15.74L6 18L9.26 13.09L3 12L9.26 10.91L6 6L10.91 8.26L12 2Z" fill="#4DCC66" data-astro-cid-kwrpbscq></path> </svg> </div> <div class="flp-ai__heading" data-astro-cid-kwrpbscq>Describe what you ate</div> <div class="flp-ai__subheading" data-astro-cid-kwrpbscq>AI will estimate the nutrition info</div> <div class="flp-ai__input" id="flp-ai-input" data-astro-cid-kwrpbscq> <span class="flp-ai__typed" id="flp-ai-typed" data-astro-cid-kwrpbscq></span><span class="flp-ai__cursor" data-astro-cid-kwrpbscq>|</span> </div> <div class="flp-ai__chips" data-astro-cid-kwrpbscq> <span class="flp-ai__chip" data-astro-cid-kwrpbscq>2 eggs and toast</span> <span class="flp-ai__chip" data-astro-cid-kwrpbscq>chicken caesar salad</span> </div> </div> <div class="flp-ai__result" id="flp-ai-result" data-astro-cid-kwrpbscq> <div class="flp-ai__parsing" id="flp-ai-parsing" data-astro-cid-kwrpbscq> <span class="flp-ai__spinner" data-astro-cid-kwrpbscq></span> <span data-astro-cid-kwrpbscq>Analyzing with AI...</span> </div> <div class="flp-ai__foods" id="flp-ai-foods" style="display:none;" data-astro-cid-kwrpbscq> <div class="flp-ai__confirm-header" data-astro-cid-kwrpbscq> <span data-astro-cid-kwrpbscq>4 items found</span> <span class="flp-ai__confirm-cal" data-astro-cid-kwrpbscq>376 cal total</span> </div> <div class="flp-card flp-ai__food-card" data-astro-cid-kwrpbscq> <div class="flp-ai__food-row" data-astro-cid-kwrpbscq> <span class="flp-ai__food-emoji" data-astro-cid-kwrpbscq>&#129370;</span> <div class="flp-ai__food-info" data-astro-cid-kwrpbscq> <div class="flp-ai__food-name" data-astro-cid-kwrpbscq>Eggs (2 large)</div> <div class="flp-ai__food-meta" data-astro-cid-kwrpbscq>scrambled</div> </div> <div class="flp-ai__food-cal" data-astro-cid-kwrpbscq>144 cal</div> </div> </div> <div class="flp-card flp-ai__food-card" data-astro-cid-kwrpbscq> <div class="flp-ai__food-row" data-astro-cid-kwrpbscq> <span class="flp-ai__food-emoji" data-astro-cid-kwrpbscq>&#127838;</span> <div class="flp-ai__food-info" data-astro-cid-kwrpbscq> <div class="flp-ai__food-name" data-astro-cid-kwrpbscq>Sourdough Toast</div> <div class="flp-ai__food-meta" data-astro-cid-kwrpbscq>1 slice</div> </div> <div class="flp-ai__food-cal" data-astro-cid-kwrpbscq>128 cal</div> </div> </div> <div class="flp-card flp-ai__food-card" data-astro-cid-kwrpbscq> <div class="flp-ai__food-row" data-astro-cid-kwrpbscq> <span class="flp-ai__food-emoji" data-astro-cid-kwrpbscq>&#129480;</span> <div class="flp-ai__food-info" data-astro-cid-kwrpbscq> <div class="flp-ai__food-name" data-astro-cid-kwrpbscq>Butter</div> <div class="flp-ai__food-meta" data-astro-cid-kwrpbscq>1 tbsp</div> </div> <div class="flp-ai__food-cal" data-astro-cid-kwrpbscq>102 cal</div> </div> </div> <div class="flp-card flp-ai__food-card" data-astro-cid-kwrpbscq> <div class="flp-ai__food-row" data-astro-cid-kwrpbscq> <span class="flp-ai__food-emoji" data-astro-cid-kwrpbscq>&#9749;</span> <div class="flp-ai__food-info" data-astro-cid-kwrpbscq> <div class="flp-ai__food-name" data-astro-cid-kwrpbscq>Black Coffee</div> <div class="flp-ai__food-meta" data-astro-cid-kwrpbscq>1 cup</div> </div> <div class="flp-ai__food-cal" data-astro-cid-kwrpbscq>2 cal</div> </div> </div> <div class="flp-ai__log-btn" data-astro-cid-kwrpbscq>Log All</div> </div> </div> </div> </div> <div class="fuel-hero__phone-bar" data-astro-cid-kwrpbscq></div> </div> </div> <div class="fuel-demo__text" data-astro-cid-kwrpbscq> <span class="fuel-section__label lead" data-astro-cid-kwrpbscq>AI-Powered</span> <h2 class="fuel-section__title display display--2" data-astro-cid-kwrpbscq>Just describe<br data-astro-cid-kwrpbscq>your food.</h2> <p class="fuel-demo__desc" data-astro-cid-kwrpbscq>
+No scrolling through databases. No scanning nutrition labels. Type "leftover pad thai, maybe half a serving" and the AI handles the ambiguity, estimates portions, and returns structured macro data with confidence scores.
+</p> <p class="fuel-demo__desc" data-astro-cid-kwrpbscq>
+For packaged foods, point your camera at the barcode. Between AI and barcode scanning, you can log a full day of eating in under 60 seconds.
+</p> </div> </div> </div> <!-- ═══════════════ FEATURES GRID ═══════════════ --> <div class="fuel-section fuel-features" data-astro-cid-kwrpbscq> <div class="fuel-section__header" data-astro-cid-kwrpbscq> <span class="fuel-section__label lead" data-astro-cid-kwrpbscq>Features</span> <h2 class="fuel-section__title display display--2" data-astro-cid-kwrpbscq>Everything you need.<br data-astro-cid-kwrpbscq>Nothing you don't.</h2> </div> <div class="fuel-features__grid" data-astro-cid-kwrpbscq> <div class="fuel-feature js-in" data-astro-cid-kwrpbscq> <div class="fuel-feature__icon" data-astro-cid-kwrpbscq> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-astro-cid-kwrpbscq> <path d="M12 2L13.09 8.26L18 6L14.74 10.91L21 12L14.74 13.09L18 18L13.09 15.74L12 22L10.91 15.74L6 18L9.26 13.09L3 12L9.26 10.91L6 6L10.91 8.26L12 2Z" fill="currentColor" data-astro-cid-kwrpbscq></path> </svg> </div> <h3 class="fuel-feature__title" data-astro-cid-kwrpbscq>AI Food Parsing</h3> <p class="fuel-feature__desc" data-astro-cid-kwrpbscq>Type in plain English. The LLM returns structured nutrition data with calories, macros, and confidence scores.</p> </div> <div class="fuel-feature js-in" data-astro-cid-kwrpbscq> <div class="fuel-feature__icon" data-astro-cid-kwrpbscq> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-astro-cid-kwrpbscq> <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2" data-astro-cid-kwrpbscq></rect> <line x1="2" y1="10" x2="22" y2="10" stroke="currentColor" stroke-width="2" data-astro-cid-kwrpbscq></line> <line x1="8" y1="4" x2="8" y2="20" stroke="currentColor" stroke-width="2" data-astro-cid-kwrpbscq></line> </svg> </div> <h3 class="fuel-feature__title" data-astro-cid-kwrpbscq>Barcode Scanning</h3> <p class="fuel-feature__desc" data-astro-cid-kwrpbscq>Point your camera at any UPC. Vision framework reads the barcode and pulls nutrition data instantly.</p> </div> <div class="fuel-feature js-in" data-astro-cid-kwrpbscq> <div class="fuel-feature__icon" data-astro-cid-kwrpbscq> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-astro-cid-kwrpbscq> <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor" data-astro-cid-kwrpbscq></path> </svg> </div> <h3 class="fuel-feature__title" data-astro-cid-kwrpbscq>HealthKit Sync</h3> <p class="fuel-feature__desc" data-astro-cid-kwrpbscq>Calories, macros, and weight sync directly to Apple Health. Your data flows where you need it.</p> </div> <div class="fuel-feature js-in" data-astro-cid-kwrpbscq> <div class="fuel-feature__icon" data-astro-cid-kwrpbscq> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-astro-cid-kwrpbscq> <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" data-astro-cid-kwrpbscq></circle> <path d="M12 7v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-kwrpbscq></path> </svg> </div> <h3 class="fuel-feature__title" data-astro-cid-kwrpbscq>Apple Watch</h3> <p class="fuel-feature__desc" data-astro-cid-kwrpbscq>Quick-log meals from your wrist. See remaining calories and macros without pulling out your phone.</p> </div> <div class="fuel-feature js-in" data-astro-cid-kwrpbscq> <div class="fuel-feature__icon" data-astro-cid-kwrpbscq> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-astro-cid-kwrpbscq> <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2" data-astro-cid-kwrpbscq></rect> <rect x="7" y="10" width="4" height="7" rx="1" fill="currentColor" data-astro-cid-kwrpbscq></rect> <rect x="13" y="7" width="4" height="10" rx="1" fill="currentColor" data-astro-cid-kwrpbscq></rect> </svg> </div> <h3 class="fuel-feature__title" data-astro-cid-kwrpbscq>Home Screen Widget</h3> <p class="fuel-feature__desc" data-astro-cid-kwrpbscq>WidgetKit-powered glanceable view. Calories remaining and macro rings right on your home screen.</p> </div> <div class="fuel-feature js-in" data-astro-cid-kwrpbscq> <div class="fuel-feature__icon" data-astro-cid-kwrpbscq> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-astro-cid-kwrpbscq> <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="currentColor" stroke-width="2" data-astro-cid-kwrpbscq></path> <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-kwrpbscq></path> </svg> </div> <h3 class="fuel-feature__title" data-astro-cid-kwrpbscq>No Account Required</h3> <p class="fuel-feature__desc" data-astro-cid-kwrpbscq>All data stays on your device. No sign-up, no cloud sync required. The only network call is to the AI parsing API.</p> </div> </div> </div> <!-- ═══════════════ TECH STACK ═══════════════ --> <div class="fuel-section fuel-stack" data-astro-cid-kwrpbscq> <div class="fuel-section__header" data-astro-cid-kwrpbscq> <span class="fuel-section__label lead" data-astro-cid-kwrpbscq>Built with</span> <h2 class="fuel-section__title display display--2" data-astro-cid-kwrpbscq>Native iOS.<br data-astro-cid-kwrpbscq>No compromises.</h2> </div> <div class="fuel-stack__grid" data-astro-cid-kwrpbscq> <div class="fuel-stack__item js-in" data-astro-cid-kwrpbscq> <div class="fuel-stack__tag" data-astro-cid-kwrpbscq>Framework</div> <div class="fuel-stack__name" data-astro-cid-kwrpbscq>SwiftUI</div> <div class="fuel-stack__detail" data-astro-cid-kwrpbscq>iOS 17.0+ / watchOS 10.0+</div> </div> <div class="fuel-stack__item js-in" data-astro-cid-kwrpbscq> <div class="fuel-stack__tag" data-astro-cid-kwrpbscq>Data</div> <div class="fuel-stack__name" data-astro-cid-kwrpbscq>SwiftData</div> <div class="fuel-stack__detail" data-astro-cid-kwrpbscq>+ SQLite3 offline USDA foods</div> </div> <div class="fuel-stack__item js-in" data-astro-cid-kwrpbscq> <div class="fuel-stack__tag" data-astro-cid-kwrpbscq>AI</div> <div class="fuel-stack__name" data-astro-cid-kwrpbscq>LLM API</div> <div class="fuel-stack__detail" data-astro-cid-kwrpbscq>OpenAI-compatible, structured JSON</div> </div> <div class="fuel-stack__item js-in" data-astro-cid-kwrpbscq> <div class="fuel-stack__tag" data-astro-cid-kwrpbscq>Health</div> <div class="fuel-stack__name" data-astro-cid-kwrpbscq>HealthKit</div> <div class="fuel-stack__detail" data-astro-cid-kwrpbscq>Calories, macros, weight sync</div> </div> <div class="fuel-stack__item js-in" data-astro-cid-kwrpbscq> <div class="fuel-stack__tag" data-astro-cid-kwrpbscq>Vision</div> <div class="fuel-stack__name" data-astro-cid-kwrpbscq>AVFoundation</div> <div class="fuel-stack__detail" data-astro-cid-kwrpbscq>UPC barcode scanning</div> </div> <div class="fuel-stack__item js-in" data-astro-cid-kwrpbscq> <div class="fuel-stack__tag" data-astro-cid-kwrpbscq>Watch</div> <div class="fuel-stack__name" data-astro-cid-kwrpbscq>WatchConnectivity</div> <div class="fuel-stack__detail" data-astro-cid-kwrpbscq>Companion app + complications</div> </div> </div> </div> <!-- ═══════════════ ARCHITECTURE ═══════════════ --> <div class="fuel-section fuel-arch" data-astro-cid-kwrpbscq> <div class="fuel-section__header" data-astro-cid-kwrpbscq> <span class="fuel-section__label lead" data-astro-cid-kwrpbscq>Architecture</span> <h2 class="fuel-section__title display display--2" data-astro-cid-kwrpbscq>How it all connects.</h2> </div> <div class="fuel-arch__diagram js-in" data-astro-cid-kwrpbscq> <pre class="fuel-arch__pre" data-astro-cid-kwrpbscq><code data-astro-cid-kwrpbscq>User Input (text / barcode / template)
+              |
+     +--------+--------+
+     |                  |
+  LLM API         Vision Framework
+ (NLP parse)      (barcode scan)
+     |                  |
+     +--------+--------+
+              |
+         SwiftData
+      (FoodEntry model)
+              |
+    +---------+---------+
+    |         |         |
+Dashboard  HealthKit  Watch App</code></pre> </div> </div> <!-- ═══════════════ CTA ═══════════════ --> <div class="fuel-section fuel-cta" data-astro-cid-kwrpbscq> <div class="fuel-cta__inner" data-astro-cid-kwrpbscq> <h2 class="display display--2 fuel-cta__title" data-astro-cid-kwrpbscq>Track smarter.</h2> <p class="fuel-cta__desc" data-astro-cid-kwrpbscq>Open source. Free. No account required.</p> <div class="fuel-hero__actions" data-astro-cid-kwrpbscq>  <a href="https://github.com/ngoc-2/FUEL" target="_blank" class="fuel-hero__cta fuel-hero__cta--secondary" data-astro-cid-kwrpbscq> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" data-astro-cid-kwrpbscq><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" data-astro-cid-kwrpbscq></path></svg>
+View on GitHub
+</a> </div> </div> </div> <!-- ═══════════════ BACK LINK ═══════════════ --> <div class="fuel-section" style="text-align: center; padding-bottom: 6rem;" data-astro-cid-kwrpbscq> <a href="/#work" class="lead u-g" style="font-size: 13px;" data-astro-cid-kwrpbscq>&#8592; Back to all projects</a> </div> </section>  <script>
+    // ═══════════════════════════════════════
+    // FUEL LANDING — AI TYPING ANIMATION
+    // ═══════════════════════════════════════
+    (function() {
+      var typed = document.getElementById('flp-ai-typed');
+      var parsing = document.getElementById('flp-ai-parsing');
+      var foods = document.getElementById('flp-ai-foods');
+      if (!typed || !parsing || !foods) return;
+
+      var text = '2 eggs, sourdough toast with butter, black coffee';
+      var i = 0;
+      var started = false;
+
+      function startTyping() {
+        if (started) return;
+        started = true;
+
+        // Small delay before typing starts
+        setTimeout(function() {
+          var interval = setInterval(function() {
+            if (i < text.length) {
+              typed.textContent += text[i];
+              i++;
+            } else {
+              clearInterval(interval);
+              // Show parsing state
+              setTimeout(function() {
+                parsing.style.display = 'flex';
+                // Show results
+                setTimeout(function() {
+                  parsing.style.display = 'none';
+                  foods.style.display = 'block';
+                }, 1800);
+              }, 400);
+            }
+          }, 45);
+        }, 600);
+      }
+
+      // Use IntersectionObserver to trigger when demo comes into view
+      var demoPhone = document.getElementById('fuel-demo-phone');
+      if (demoPhone && 'IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              startTyping();
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.4 });
+        observer.observe(demoPhone);
+      } else {
+        // Fallback: start after delay
+        setTimeout(startTyping, 2000);
+      }
+    })();
+
+    // ═══════════════════════════════════════
+    // FUEL LANDING — HERO PHONE FLOAT ANIMATION
+    // ═══════════════════════════════════════
+    (function() {
+      var phone = document.getElementById('fuel-hero-phone');
+      if (!phone || typeof gsap === 'undefined') return;
+
+      // Wait for GSAP to be available (it's loaded in BaseLayout)
+      function initFloat() {
+        // Initial entrance
+        gsap.fromTo(phone, {
+          y: 40,
+          opacity: 0,
+        }, {
+          y: 0,
+          opacity: 1,
+          duration: 1.4,
+          delay: 0.5,
+          ease: 'power4.out',
+        });
+
+        // Gentle floating
+        gsap.to(phone, {
+          y: -8,
+          duration: 3,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+          delay: 2,
+        });
+      }
+
+      // GSAP is loaded via BaseLayout, but might not be ready yet
+      if (typeof gsap !== 'undefined' && gsap.to) {
+        initFloat();
+      } else {
+        window.addEventListener('load', initFloat);
+      }
+    })();
+  </script>  </main> <!-- GSAP + ScrollTrigger + Lenis --> <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script> <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script> <script>
+    // ═══════════════════════════════════════
+    // LENIS SMOOTH SCROLL
+    // ═══════════════════════════════════════
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: !isMobile,
+      smoothTouch: false,
+    });
+
+    if (!isMobile) {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    // ═══════════════════════════════════════
+    // PRELOADER — ASCII PROGRESS BAR
+    // ═══════════════════════════════════════
+    (function() {
+      const fillEl = document.getElementById('preloader-fill');
+      const pctEl = document.getElementById('preloader-pct');
+      const preloader = document.getElementById('preloader');
+      const barWidth = 30;
+
+      function render(progress) {
+        const filled = Math.round((progress / 100) * barWidth);
+        fillEl.textContent = '█'.repeat(filled) + '░'.repeat(barWidth - filled);
+        pctEl.textContent = Math.round(progress) + '%';
+      }
+
+      render(0);
+
+      window.addEventListener('load', () => {
+        render(100);
+        gsap.to(preloader, {
+          opacity: 0,
+          duration: 0.4,
+          delay: 0.1,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            preloader.style.display = 'none';
+            lenis.start();
+            animateHero();
+          }
+        });
+      });
+    })();
+
+    // ═══════════════════════════════════════
+    // CUSTOM CURSOR
+    // ═══════════════════════════════════════
+    const cursor = document.getElementById('cursor');
+    if (cursor && window.matchMedia('(pointer: fine)').matches) {
+      let cx = 0, cy = 0, tx = 0, ty = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        tx = e.clientX;
+        ty = e.clientY;
+      });
+
+      function updateCursor() {
+        cx += (tx - cx) * 0.15;
+        cy += (ty - cy) * 0.15;
+        cursor.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+        requestAnimationFrame(updateCursor);
+      }
+      updateCursor();
+      cursor.style.opacity = '1';
+
+      // Scale up on links/buttons
+      document.querySelectorAll('a, button, .gallery-item').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('cursor--active'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--active'));
+      });
+    }
+
+    // ═══════════════════════════════════════
+    // HERO ANIMATION — Staggered text reveal
+    // ═══════════════════════════════════════
+    function animateHero() {
+      gsap.fromTo('.hero-slideshow', { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.4, ease: 'power4.out' });
+      gsap.fromTo('.hero-overlap__text .display', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, delay: 0.3, ease: 'power4.out' });
+
+      // Header — slide down
+      gsap.fromTo('#site-header', {
+        y: -40,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        delay: 0.8,
+        ease: 'power3.out',
+      });
+    }
+
+    // ═══════════════════════════════════════
+    // SCROLL ANIMATIONS — GSAP ScrollTrigger
+    // ═══════════════════════════════════════
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Quote text — line-by-line reveal with parallax
+    document.querySelectorAll('.quote-text').forEach(quote => {
+      // Wrap each line in a span for animation
+      const html = quote.innerHTML;
+      const lines = html.split('<br>').map(l => l.trim()).filter(Boolean);
+      quote.innerHTML = lines.map(l =>
+        `<div class="quote-line" style="overflow:hidden;"><span class="quote-line__inner" style="display:block;">${l}</span></div>`
+      ).join('');
+
+      gsap.fromTo(quote.querySelectorAll('.quote-line__inner'), {
+        y: '110%',
+        rotateX: -20,
+      }, {
+        y: '0%',
+        rotateX: 0,
+        duration: 1.2,
+        stagger: 0.1,
+        ease: 'power4.out',
+        scrollTrigger: {
+          trigger: quote,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        }
+      });
+    });
+
+    // Quote attribution — fade in
+    document.querySelectorAll('.quote-attribution').forEach(attr => {
+      gsap.fromTo(attr, {
+        opacity: 0,
+        y: 30,
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: attr,
+          start: 'top 85%',
+        }
+      });
+    });
+
+    // Photo section — scale in
+    document.querySelectorAll('.js-in:not(.hero-row)').forEach(el => {
+      // Skip hero elements (animated separately)
+      if (el.closest('.home-hero')) return;
+
+      gsap.fromTo(el, {
+        y: isMobile ? 20 : 60,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: isMobile ? 0.6 : 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 90%',
+          toggleActions: 'play none none none',
+        }
+      });
+    });
+
+    // Hero title — split apart on scroll
+    var heroTexts = document.querySelectorAll('.hero-overlap__text .display');
+    if (heroTexts.length >= 2) {
+      gsap.to(heroTexts[0], { y: -120, ease: 'none', scrollTrigger: { trigger: '.home-hero', start: 'top top', end: 'bottom top', scrub: 1 } });
+      gsap.to(heroTexts[1], { y: 120, ease: 'none', scrollTrigger: { trigger: '.home-hero', start: 'top top', end: 'bottom top', scrub: 1 } });
+      gsap.to('.hero-slideshow', { scale: 0.92, ease: 'none', scrollTrigger: { trigger: '.home-hero', start: 'top top', end: 'bottom top', scrub: 1 } });
+    }
+
+    // Project cards — stagger slide up
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+      gsap.fromTo(card, {
+        y: isMobile ? 20 : 80,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: isMobile ? 0.5 : 1,
+        delay: isMobile ? i * 0.03 : i * 0.08,
+        ease: 'power4.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 95%',
+        }
+      });
+    });
+
+    // Gallery images — parallax on scroll
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+      gsap.fromTo(img, {
+        scale: 1.15,
+      }, {
+        scale: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: img.closest('.gallery-section'),
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5,
+        }
+      });
+    });
+
+    // Display headings — parallax speed difference
+    document.querySelectorAll('.display--2').forEach(heading => {
+      gsap.fromTo(heading, {
+        y: 40,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power4.out',
+        scrollTrigger: {
+          trigger: heading,
+          start: 'top 85%',
+        }
+      });
+    });
+
+    // About section text — paragraph stagger
+    document.querySelectorAll('#about p').forEach((p, i) => {
+      gsap.fromTo(p, {
+        y: 40,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        delay: i * 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: p,
+          start: 'top 88%',
+        }
+      });
+    });
+
+    // Footer outro — slide up
+    document.querySelectorAll('.site-footer__outro > div').forEach((col, i) => {
+      gsap.fromTo(col, {
+        y: 40,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        delay: i * 0.12,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.site-footer__outro',
+          start: 'top 90%',
+        }
+      });
+    });
+
+    // Build section — browser mockup builds up, features stagger
+    var buildBrowser = document.querySelector('.build-browser');
+    if (buildBrowser) {
+      // Browser slides in from left
+      gsap.fromTo(buildBrowser, {
+        x: -60,
+        opacity: 0,
+      }, {
+        x: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power4.out',
+        scrollTrigger: {
+          trigger: buildBrowser,
+          start: 'top 85%',
+        }
+      });
+
+      // Wireframe elements build sequentially
+      var wireEls = buildBrowser.querySelectorAll('.build-wire__nav, .build-wire__line, .build-wire__cta, .build-wire__card');
+      wireEls.forEach(function(el, i) {
+        gsap.fromTo(el, {
+          opacity: 0,
+          y: 8,
+        }, {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          delay: 0.4 + i * 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: buildBrowser,
+            start: 'top 85%',
+          }
+        });
+      });
+
+      // Lighthouse scores count up
+      var scoreEls = buildBrowser.querySelectorAll('.build-browser__stat-val--green');
+      scoreEls.forEach(function(el) {
+        var target = 100;
+        var obj = { val: 0 };
+        gsap.to(obj, {
+          val: target,
+          duration: 1.5,
+          delay: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: buildBrowser,
+            start: 'top 85%',
+          },
+          onUpdate: function() {
+            el.textContent = Math.round(obj.val);
+          }
+        });
+      });
+
+      // Load time counts
+      var loadEl = buildBrowser.querySelector('.build-browser__stat-val:not(.build-browser__stat-val--green)');
+      if (loadEl) {
+        var loadObj = { val: 0 };
+        gsap.to(loadObj, {
+          val: 0.4,
+          duration: 1.5,
+          delay: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: buildBrowser,
+            start: 'top 85%',
+          },
+          onUpdate: function() {
+            loadEl.textContent = loadObj.val.toFixed(1) + 's';
+          }
+        });
+      }
+    }
+
+    // Build features — stagger from right
+    document.querySelectorAll('.build-section__feature').forEach(function(feat, i) {
+      gsap.fromTo(feat, {
+        x: 40,
+        opacity: 0,
+      }, {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        delay: i * 0.12,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: feat,
+          start: 'top 90%',
+        }
+      });
+    });
+
+    // Contact cards — stagger
+    document.querySelectorAll('.contact-card').forEach(function(card, i) {
+      gsap.fromTo(card, {
+        y: 30,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        delay: i * 0.08,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 92%',
+        }
+      });
+    });
+
+    // Photo grid items — stagger reveal
+    document.querySelectorAll('.photo-grid__item').forEach((item, i) => {
+      gsap.fromTo(item, {
+        y: 60,
+        opacity: 0,
+        scale: 0.95,
+      }, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        delay: (i % 6) * 0.08,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 92%',
+        }
+      });
+    });
+
+    // ═══════════════════════════════════════
+    // MAGNETIC HOVER on nav links
+    // ═══════════════════════════════════════
+    document.querySelectorAll('.site-nav__link, .site-header__brand').forEach(link => {
+      link.addEventListener('mousemove', (e) => {
+        const rect = link.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        gsap.to(link, { x: x * 0.3, y: y * 0.3, duration: 0.3, ease: 'power2.out' });
+      });
+      link.addEventListener('mouseleave', () => {
+        gsap.to(link, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+      });
+    });
+
+    // ═══════════════════════════════════════
+    // MOBILE MENU
+    // ═══════════════════════════════════════
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle?.addEventListener('click', () => {
+      const isOpen = mobileMenu?.classList.toggle('open');
+      menuToggle.textContent = isOpen ? 'Close' : 'Menu';
+      if (isOpen) lenis.stop(); else lenis.start();
+    });
+
+    window.closeMobileMenu = function() {
+      mobileMenu?.classList.remove('open');
+      if (menuToggle) menuToggle.textContent = 'Menu';
+      lenis.start();
+    };
+
+    // ═══════════════════════════════════════
+    // THEME TOGGLE
+    // ═══════════════════════════════════════
+    function updateToggleText() {
+      var isDark = document.documentElement.classList.contains('dark');
+      document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+        btn.textContent = isDark ? 'Light' : 'Dark';
+      });
+    }
+    updateToggleText();
+
+    window.toggleTheme = function() {
+      document.documentElement.classList.toggle('dark');
+      var isDark = document.documentElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateToggleText();
+    };
+  </script> </body> </html>

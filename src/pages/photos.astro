@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+function getPhotos(dir: string) {
+  const fullPath = path.join(process.cwd(), 'public', 'photos', dir);
+  try {
+    return fs.readdirSync(fullPath)
+      .filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f))
+      .map(f => `/photos/${dir}/${f}`);
+  } catch { return []; }
+}
+
+const collections = [
+  { id: 'alaska', name: 'Alaska', photos: getPhotos('alaska') },
+  { id: 'ecuador', name: 'Ecuador', photos: getPhotos('ecuador') },
+  { id: 'bw', name: 'Black & White', photos: getPhotos('bw') },
+];
+
+const allPhotos = collections.flatMap(c => c.photos);
+---
+
+<BaseLayout title="Photos — Steven Nguyen" description="Photography from Alaska, Ecuador, and more.">
+  <section class="photos-hero js-in">
+    <h1>Through<br/>the lens</h1>
+  </section>
+
+  <div class="filter-bar js-in">
+    <button class="filter-btn active" data-filter="all">
+      All ({allPhotos.length})
+    </button>
+    {collections.map(c => (
+      <button class="filter-btn" data-filter={c.id}>
+        {c.name} ({c.photos.length})
+      </button>
+    ))}
+  </div>
+
+  <section class="js-in" style="padding-bottom: clamp(4rem, 8vw, 8rem);">
+    <div class="photo-grid" id="photo-grid">
+      {collections.map(c =>
+        c.photos.map(photo => (
+          <div class="photo-grid__item" data-collection={c.id}>
+            <img
+              src={photo}
+              alt=""
+              loading="lazy"
+              onclick={`openLightbox('${photo}')`}
+              style="cursor: pointer;"
+            />
+          </div>
+        ))
+      )}
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" onclick="closeLightbox()">Close</button>
+    <button class="lightbox__nav lightbox__nav--prev" onclick="prevPhoto()">&#8592;</button>
+    <button class="lightbox__nav lightbox__nav--next" onclick="nextPhoto()">&#8594;</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__outro">
+      <div>
+        <div>
+          <a href="https://github.com/quakeob" class="site-footer__social" target="_blank">GH</a>
+          <a href="https://x.com/Jak3dev" class="site-footer__social" target="_blank">X</a>
+          <a href="https://instagram.com/stevennguye.n" class="site-footer__social" target="_blank">IG</a>
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <span class="site-footer__email" id="email-copy" onclick="copyEmail()">
+          stevenn348@gmail.com
+          <span class="email-copied" id="email-msg">copied!</span>
+        </span>
+      </div>
+      <div style="text-align: right;">
+        <div>
+          <a href="https://astro.build" class="site-footer__social" target="_blank">Astro</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script is:inline define:vars={{ allPhotos: JSON.stringify(allPhotos) }}>
+    let photos = JSON.parse(allPhotos);
+    let currentIndex = 0;
+
+    // Copy email
+    window.copyEmail = function() {
+      navigator.clipboard.writeText('stevenn348@gmail.com');
+      const msg = document.getElementById('email-msg');
+      msg.classList.add('show');
+      setTimeout(() => msg.classList.remove('show'), 1500);
+    };
+
+    // Filter
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.photo-grid__item').forEach(item => {
+          item.style.display = (filter === 'all' || item.dataset.collection === filter) ? '' : 'none';
+        });
+      });
+    });
+
+    // Lightbox
+    window.openLightbox = function(src) {
+      currentIndex = photos.indexOf(src);
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeLightbox = function() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    };
+
+    window.nextPhoto = function() {
+      currentIndex = (currentIndex + 1) % photos.length;
+      document.getElementById('lightbox-img').src = photos[currentIndex];
+    };
+
+    window.prevPhoto = function() {
+      currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+      document.getElementById('lightbox-img').src = photos[currentIndex];
+    };
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('lightbox').classList.contains('open')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') nextPhoto();
+        if (e.key === 'ArrowLeft') prevPhoto();
+      }
+    });
+  </script>
+</BaseLayout>
